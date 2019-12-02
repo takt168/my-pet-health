@@ -20,10 +20,13 @@ From the home directory of the project, run `bundle` to install all of the Rails
 Next go into the client directory and run `npm i` to install the react front end dependencies.  Once that completes, run `npm start` to start the front end web applications.
 
 ## Entity Relationship Diagram (ERD)
+
 ![My Pet Health ERD](https://res.cloudinary.com/du4z2ezqn/image/upload/v1575256200/My-Pet-Health-ERD_vgddfq.png)
 
 ## Wireframes
-    - **Wireframes** **Hi-fi wireframes ONLY**, please use your wireframes to demonstrate the user journey. Think of how the user will interact with the UI of your app.
+
+![My Pet Health Wireframes](https://res.cloudinary.com/du4z2ezqn/image/upload/v1575295961/My-Pet-Health-Mid-Fi-Wireframes_ewqiuh.png)
+
 ## React Component Hierarchy
 ```
 <App>
