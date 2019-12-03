@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  event_date: 2019-12-02
+  expiration_date: 2019-12-02
+
+two:
+  name: MyString
+  type: 
+  event_date: 2019-12-02
+  expiration_date: 2019-12-02
