@@ -32,7 +32,8 @@ class App extends Component {
         species: "",
         breed: "",
         birth_date: "",
-        image_url: ""
+        image_url: "",
+        user_id: ""
       },
       currentUser: null,
       authFormData: {
@@ -46,8 +47,15 @@ class App extends Component {
   async componentDidMount() {
     this.getPets();
     const currentUser = await verifyUser();
+    console.log(`currentUser: ${currentUser.id}`);
     if (currentUser) {
       this.setState({ currentUser })
+      this.setState(prevState => ({
+        petForm: {
+          ...prevState.petForm,
+          user_id: currentUser.id
+        }
+      }))
     }
   }
 
@@ -60,6 +68,7 @@ class App extends Component {
 
   newPet = async (e) => {
     e.preventDefault();
+    console.log("in newPet: ", this.state.petForm)
     const pet = await createPet(this.state.petForm);
     this.setState(prevState => ({
       pets: [...prevState.pets, pet],
@@ -69,7 +78,8 @@ class App extends Component {
         species: "",
         breed: "",
         birth_date: "",
-        image_url: ""
+        image_url: "",
+        user_id: ""
       }
     }))
     this.props.history.push("/")
@@ -122,7 +132,8 @@ class App extends Component {
         species: "",
         breed: "",
         birth_date: "",
-        image_url: ""
+        image_url: "",
+        user_id: ""
       }
     })
   }
