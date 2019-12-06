@@ -25,11 +25,10 @@ function EditPet(props) {
 
           <div className="in-line-edit">
             <p>Pet's Bio:</p>
-            <input
-              type="text"
-              name="description"
+            <textarea rows="5" cols="75" name="description"
               value={props.petForm.description}
-              onChange={props.handleFormChange} />
+              onChange={props.handleFormChange}>
+            </textarea>
           </div>
         </div>
         <br />

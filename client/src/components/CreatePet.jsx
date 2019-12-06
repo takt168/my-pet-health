@@ -14,11 +14,11 @@ function CreatePet(props) {
           onChange={props.handleFormChange} />
 
         <p>Pet's Bio:</p>
-        <input
-          type="text"
+        <textarea rows="5" cols="75"
           name="description"
           value={props.petForm.description}
-          onChange={props.handleFormChange} />
+          onChange={props.handleFormChange} >
+        </textarea>
 
         <p>Species:</p>
         <input

@@ -47,7 +47,7 @@ class App extends Component {
         event_type: "",
         event_date: "",
         expiration_date: "",
-        pet_id: "9"
+        pet_id: ""
       },
       currentUser: null,
       authFormData: {
@@ -85,6 +85,16 @@ class App extends Component {
     })
   }
 
+  setPetIdOnEventForm = (pet_id) => {
+    this.setState(prevState => ({
+      eventForm: {
+        ...prevState.eventForm,
+        pet_id
+      }
+    }))
+    console.log(this.state.eventForm);
+  }
+
   newPet = async (e) => {
     e.preventDefault();
     console.log("in newPet: ", this.state.petForm)
@@ -97,8 +107,7 @@ class App extends Component {
         species: "",
         breed: "",
         birth_date: "",
-        image_url: "",
-        user_id: ""
+        image_url: ""
       }
     }))
     this.props.history.push("/")
@@ -307,7 +316,8 @@ class App extends Component {
               pets={this.state.pets}
               petForm={this.state.petForm}
               handleFormChange={this.handleFormChange}
-              newPet={this.newPet} />
+              newPet={this.newPet}
+              currentUser={this.state.currentUser} />
           )}
         />
         <Route
@@ -339,6 +349,8 @@ class App extends Component {
               handleEventFormChange={this.handleEventFormChange}
               showInfo={this.state.showInfo}
               showMedical={this.state.showMedical}
+              setPetIdOnEventForm={this.setPetIdOnEventForm}
+              currentUser={this.state.currentUser}
             />
           }}
         />

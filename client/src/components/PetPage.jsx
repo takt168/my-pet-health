@@ -17,6 +17,7 @@ class PetsPage extends Component {
 
   componentDidMount() {
     this.props.mountEditForm(this.props.id);
+    this.props.setPetIdOnEventForm(this.props.id);
 
   }
 
@@ -44,7 +45,10 @@ class PetsPage extends Component {
       <>
         <div className="sidenav">
           <button onClick={this.displayInfo} >Pet Profile</button>
-          <button onClick={this.displayMedical} >Medical Log</button>
+          {this.props.currentUser &&
+
+            <button onClick={this.displayMedical} >Medical Log</button>
+          }
           {/* <a href="#service-provider-section">Service Providers</a> */}
         </div>
 
@@ -69,18 +73,20 @@ class PetsPage extends Component {
                   )} />
                   :
                   <>
-                    <div className="pet-name-div">
-                      <button className="submit-button" onClick={() => {
-                        this.setState({
-                          isEdit: true
-                        })
-                        this.props.history.push(`/pets/${pet.id}/edit`)
-                      }}>Edit</button>
-                      <button className="submit-button" onClick={() => {
-                        this.props.deletePet(pet.id);
-                        this.props.history.push('/')
-                      }}>Delete</button>
-                    </div>
+                    {this.props.currentUser &&
+                      <div className="pet-name-div">
+                        <button className="submit-button" onClick={() => {
+                          this.setState({
+                            isEdit: true
+                          })
+                          this.props.history.push(`/pets/${pet.id}/edit`)
+                        }}>Edit</button>
+                        <button className="submit-button" onClick={() => {
+                          this.props.deletePet(pet.id);
+                          this.props.history.push('/')
+                        }}>Delete</button>
+                      </div>
+                    }
                     <br />
                     <div className="pet-name-div">
                       <h2>{pet.name}</h2>
@@ -111,34 +117,40 @@ class PetsPage extends Component {
                   backgroundImage: `${linear_gradient}, url(${pet.image_url}) `
                 }}>
                 <h2>Medical Info</h2>
-                <div className="add-med-card">
-                  <Link to={`/pets/${pet.id}/new/event`} >
-                    <img alt="Create a new medical event"
-                      src="https://icon-library.net/images/white-plus-icon/white-plus-icon-3.jpg"
-                      className="plus-sign" />
-                  </Link>
-                  <h3>Create a new medical event</h3>
-                </div>
+                {this.props.currentUser &&
 
+                  <div className="add-med-card">
+                    <Link to={`/pets/${pet.id}/new/event`} >
+                      <img alt="Create a new medical event"
+                        src="https://icon-library.net/images/white-plus-icon/white-plus-icon-3.jpg"
+                        className="plus-sign" />
+                    </Link>
+                    <h3>Create a new medical event</h3>
+                  </div>
+                }
                 <div className="med-event-container">
-                  {this.props.events && this.props.events.map(med_event => (
-                    <div key={med_event.id} className="med-card">
-                      <p>{med_event.event_date}</p>
-                      <p>{med_event.name}</p>
-                      <p>{med_event.event_type}</p>
-                      <p>Exipiration/Due Date: {med_event.expiration_date}</p>
-
-                      <Link to={`/pets/${pet.id}/events/${med_event.id}/edit`} >
-                        <button className="submit-button">Edit</button>
-                      </Link>
-                      <button className="submit-button" onClick={() => {
-                        this.props.deleteEvent(med_event.id);
-                        this.props.history.push('/')
-                      }}>Delete</button>
-                      <br />
-
-                    </div>
-                  ))}
+                  {this.props.events && this.props.events
+                    .filter(med => this.props.id == parseInt(med.pet_id))
+                    .map(med_event => (
+                      <div key={med_event.id} className="med-card">
+                        <p>{med_event.event_date}</p>
+                        <p>{med_event.name}</p>
+                        <p>{med_event.event_type}</p>
+                        <p>Exipiration/Due Date: {med_event.expiration_date}</p>
+                        {this.props.currentUser &&
+                          <>
+                            <Link to={`/pets/${pet.id}/events/${med_event.id}/edit`} >
+                              <button className="submit-button">Edit</button>
+                            </Link>
+                            <button className="submit-button" onClick={() => {
+                              this.props.deleteEvent(med_event.id);
+                              this.props.history.push('/')
+                            }}>Delete</button>
+                            <br />
+                          </>
+                        }
+                      </div>
+                    ))}
                 </div>
               </div>
               }

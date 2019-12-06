@@ -8,6 +8,9 @@
 a {
   text-decoration: none;
 }
+textarea {
+  resize: none;
+}
 
 header {
   background-image: linear-gradient(to right, #ffffff, #ffffff, #b9b9b9, #777777, #3b3b3b,#000000);
