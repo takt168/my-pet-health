@@ -142,7 +142,7 @@ header img {
   margin-top: 5px;
 }
 
-#pet-profile-main-screen, #medical-profile-section, #service-provider-section {
+#pet-profile-main-screen, #medical-profile-section, #service-provider-section, #edit-event-section {
   padding-top: 100px;
   height: 86vh;
   background-repeat: no-repeat;
@@ -190,7 +190,7 @@ header img {
   background-color: #b9b9b9;
 }
 
-#edit-event-div {
+#edit-event-section {
   padding-top: 100px;
   margin-left: 250px; /* Same as the width of the sidebar */
   text-align: center;
@@ -198,7 +198,6 @@ header img {
 }
 
 #edit-event-form {
-  margin-left: 250px; /* Same as the width of the sidebar */
   text-align: center;
 }
 #edit-event-form button{

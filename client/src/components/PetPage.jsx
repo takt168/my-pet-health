@@ -19,6 +19,7 @@ class PetsPage extends Component {
     this.props.mountEditForm(this.props.id);
     this.props.setPetIdOnEventForm(this.props.id);
 
+    console.log(this.props.image_url)
   }
 
   displayMedical = () => {
@@ -130,7 +131,7 @@ class PetsPage extends Component {
                 }
                 <div className="med-event-container">
                   {this.props.events && this.props.events
-                    .filter(med => this.props.id == parseInt(med.pet_id))
+                    .filter(med => parseInt(this.props.id) === med.pet_id)
                     .map(med_event => (
                       <div key={med_event.id} className="med-card">
                         <p>{med_event.event_date}</p>
@@ -169,7 +170,7 @@ class PetsPage extends Component {
         </div>
 
         <Route
-          path="/pets/:id/events/:event_id/edit"
+          exact path="/pets/:id/events/:event_id/edit"
           render={(props) => {
             const { id, event_id } = props.match.params;
             console.log(`event_id: ${event_id}`)
@@ -185,7 +186,7 @@ class PetsPage extends Component {
                 e.preventDefault();
                 this.props.editEvent(event_id);
                 this.setState({ isEventEdit: false })
-                this.props.history.push(`/pets/${this.props.petForm.id}`)
+                this.props.history.push(`/pets/${id}`)
               }}
 
             />

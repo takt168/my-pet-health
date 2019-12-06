@@ -179,7 +179,7 @@ class App extends Component {
         }),
       }
     ))
-    this.props.history.push(`/pets`)
+    this.props.history.push(`/pets/${eventForm.pet_id}`)
   }
 
   deleteEvent = async (id) => {
@@ -228,7 +228,7 @@ class App extends Component {
     });
   }
 
-  resetForm = () => {
+  resetPetForm = () => {
     this.setState({
       petForm: {
         name: "",
@@ -298,6 +298,7 @@ class App extends Component {
           handleLoginButton={this.handleLoginButton}
           handleLogout={this.handleLogout}
           currentUser={this.state.currentUser}
+          resetPetForm={this.resetPetForm}
         />
         <Route exact path="/login" render={() => (
           <Login
@@ -321,12 +322,14 @@ class App extends Component {
           )}
         />
         <Route
-          path="/new/pet"
+          exact path="/new/pet"
           render={() => (
             <CreatePet
               handleFormChange={this.handleFormChange}
               petForm={this.state.petForm}
-              newPet={this.newPet} />
+              newPet={this.newPet}
+              currentUser={this.state.currentUser}
+            />
           )} />
         <Route
           path="/pets/:id"
@@ -356,7 +359,7 @@ class App extends Component {
         />
 
         <Route
-          path="/pets/:id/new/event"
+          exact path="/pets/:id/new/event"
           render={(props) => {
             const { id } = props.match.params;
             return <CreateEvent
