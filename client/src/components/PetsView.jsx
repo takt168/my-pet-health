@@ -12,14 +12,12 @@ function PetsView(props) {
             props.history.push(`/pets/${pet.id}`);
             window.scrollTo(0, 0);
           }}>
+          <h4>{pet.name}</h4>
           <img className="pet-list-img" alt={pet.name} src={pet.image_url} />
-          <h3>
-            <p>{pet.name}</p>
-          </h3>
         </div>
       ))}
       <div
-        className="pet-card"
+        className="pet-add-section"
         onClick={() => {
           props.history.push('/new/pet');
           window.scrollTo(0, 0);

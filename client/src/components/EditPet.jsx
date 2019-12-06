@@ -86,7 +86,7 @@ function EditPet(props) {
           </div>
         </div>
         <br />
-        <button>Submit</button>
+        <button className="submit-button">Submit</button>
       </form>
     </>
   )

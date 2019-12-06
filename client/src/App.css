@@ -1,6 +1,8 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Libre Baskerville', serif;
+
 }
 
 a {
@@ -14,12 +16,17 @@ header {
   justify-content: space-between;
   border-bottom: 2px solid black;
   height: 100px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  font-family: 'Libre Baskerville', serif;
 }
 
-header a, header h1 {
-  margin:0;
-  padding: 0;
+header a {
+  color: aqua;
+  font-weight: 900;
 }
+
 header img {
   height: 100px;
   object-fit: contain;
@@ -31,7 +38,14 @@ header img {
 }
 
 #header-user-info p {
-  color: white;
+  color: aqua;
+}
+
+.pet-card {
+  display: inline-block;
+  text-align: center;
+  margin: 20px;
+
 }
 
 .plus-sign {
@@ -44,6 +58,40 @@ header img {
   object-fit: contain;
 }
 
+.pet-add-section {
+  display: flex;
+}
+
+.pet-add-section h3{
+  margin-left: 10px;
+}
+
+/***************   PET CREATE PAGE   ***************/
+.create-form {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.create-form form button {
+  margin-top: 10px;
+}
+
+/***************   EVENT CREATE PAGE   ***************/
+.create-event-form {
+  margin-left: 250px; /* Same as the width of the sidebar */
+  padding: 0;
+  text-align: center;
+}
+
+.create-event-form form button {
+  margin-top: 10px;
+}
+
+#doctor-pad {
+  width: 300px;
+  height: 200px;
+  object-fit: fill;
+}
 /***************   PET PROFILE PAGE   ***************/
 
 /* The sidebar menu */
@@ -61,12 +109,19 @@ header img {
 }
 
 /* The navigation menu links */
-.sidenav a {
+.sidenav button {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
   color: #818181;
   display: block;
+  border: 0;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -80,7 +135,12 @@ header img {
   padding: 0;
 }
 
-#pet-profile-main-screen {
+#pet-profile-section h2 {
+  margin-top: 5px;
+}
+
+#pet-profile-main-screen, #medical-profile-section, #service-provider-section {
+  padding-top: 100px;
   height: 86vh;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -88,24 +148,103 @@ header img {
   -o-background-size: cover;
   background-size: cover;
   text-align: center;
+  color: rgba(255, 255, 255, 0.9)
+}
+
+#medical-profile-section {
+  padding-top: 100px;
+  height: 86vh;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: .75em;
 }
 
 .pet-name-div, .edit-pet-div{
-  background-color: rgba(128, 128, 128, 0.6);
+  /* background-color: rgba(128, 128, 128, 0.6); */
   display:inline-block;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   padding: 5px 20px;
   margin: 5px 100px;
   
 }
 
+.auth-container {
+  text-align: center;
+}
+.pet-container, .auth-container {
+  padding-top: 100px;
+  height: 86vh;
+  background-color: #b9b9b9;
+}
 
+.create-form {
+  height: 86vh;
+  background-color: #b9b9b9;
+}
+
+#edit-event-div {
+  padding-top: 100px;
+  margin-left: 250px; /* Same as the width of the sidebar */
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#edit-event-form {
+  margin-left: 250px; /* Same as the width of the sidebar */
+  text-align: center;
+}
+#edit-event-form button{
+  margin-top: 10px;
+}
 .in-line-edit{
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
+.add-med-card {
+  display: flex;
+  margin: 10px;
+  justify-content: center;
+}
+.add-med-card h3 {
+  margin-left: 10px;
+}
+.med-card {
+  background-color: rgba(251, 227, 100, 0.7);
+  margin: 10px;
+  padding: 5px;
+  width: 250px;
+  height: 100px;
+  color: black;
+ 
+}
 
+/***************   Button   ***************/
+.button-div {
+  padding: 4px 0;
+}
+.submit-button {
+  padding: 4px 8px;
+  font-size:1em;
+  border-radius: 3px;
+  border: 1px solid black;
+  transition-timing-function: ease-in-out;
+  box-shadow: 1px 1px darkgray;
+}
+
+.submit-button:hover {
+  background-color: black;
+  color:white;
+  /* shrink on hover */
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+}
 /***************   MEDIA QUERIES   ***************/
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

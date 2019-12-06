@@ -49,3 +49,24 @@ export const destroyPet = async (id) => {
   const resp = await api.delete(`/pets/${id}`)
   return resp.data
 }
+
+export const createEvent = async (data) => {
+  const resp = await api.post(`/events`, { event: data })
+  // return resp.data
+  return resp.data
+}
+
+export const readAllEvents = async () => {
+  const resp = await api.get('/events')
+  return resp.data
+}
+
+export const updateEvent = async (id, data) => {
+  const resp = await api.put(`/events/${id}`, { event: data })
+  return resp.data
+}
+
+export const destroyEvent = async (id) => {
+  const resp = await api.delete(`/events/${id}`)
+  return resp.data
+}

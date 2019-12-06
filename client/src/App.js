@@ -8,12 +8,18 @@ import CreatePet from './components/CreatePet'
 import Login from './components/Login'
 import Register from './components/Register'
 import Header from './components/Header';
+import CreateEvent from './components/CreateEvent';
+import EditEvent from './components/EditEvent';
 
 import {
   createPet,
   readAllPets,
   updatePet,
   destroyPet,
+  createEvent,
+  readAllEvents,
+  updateEvent,
+  destroyEvent,
   loginUser,
   registerUser,
   verifyUser
@@ -35,22 +41,33 @@ class App extends Component {
         image_url: "",
         user_id: ""
       },
+      events: [],
+      eventForm: {
+        name: "",
+        event_type: "",
+        event_date: "",
+        expiration_date: "",
+        pet_id: "9"
+      },
       currentUser: null,
       authFormData: {
         username: "",
         email: "",
         password: ""
-      }
+      },
+      showInfo: "true",
+      showMedical: null
     };
   }
 
   async componentDidMount() {
     this.getPets();
+    this.getEvents();
     const currentUser = await verifyUser();
     console.log(`currentUser: ${currentUser.id}`);
     if (currentUser) {
-      this.setState({ currentUser })
       this.setState(prevState => ({
+        currentUser,
         petForm: {
           ...prevState.petForm,
           user_id: currentUser.id
@@ -58,6 +75,8 @@ class App extends Component {
       }))
     }
   }
+
+  // ***************  PETS  *************** 
 
   getPets = async () => {
     const pets = await readAllPets();
@@ -106,6 +125,64 @@ class App extends Component {
     this.props.history.push("/")
   }
 
+  // ***************  EVENTS  ***************
+
+  getEvents = async () => {
+    const events = await readAllEvents();
+    this.setState({
+      events
+    })
+  }
+
+  newEvent = async (e) => {
+    e.preventDefault();
+    console.log("in newEvent: ", this.state.eventForm)
+    const event = await createEvent(this.state.eventForm);
+    this.setState(prevState => ({
+      events: [...prevState.events, event],
+      eventForm: {
+        name: "",
+        event_type: "",
+        event_date: "",
+        expiration_date: "",
+        pet_id: ""
+      }
+    }))
+    console.log("in newEvent: ", this.state.events)
+    this.props.history.push("/")
+  }
+
+  editEvent = async (id) => {
+    const { eventForm } = this.state
+    this.setState(prevState => ({
+      eventForm: {
+        ...prevState.eventForm,
+        id
+      }
+    }))
+
+
+    await updateEvent(eventForm.id, eventForm);
+    this.setState(prevState => (
+      {
+        events: prevState.events.map(event => {
+          return event.id === eventForm.id ? eventForm : event
+        }),
+      }
+    ))
+    this.props.history.push(`/pets`)
+  }
+
+  deleteEvent = async (id) => {
+    await destroyEvent(id);
+    this.setState(prevState => ({
+      pets: prevState.events.filter(event => event.id !== id)
+    }))
+    this.props.history.push("/")
+  }
+
+  // ***************  FORMS  *************** 
+
   handleFormChange = (e) => {
     const { name, value } = e.target;
     this.setState(prevState => ({
@@ -116,11 +193,29 @@ class App extends Component {
     }))
   }
 
+  handleEventFormChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      eventForm: {
+        ...prevState.eventForm,
+        [name]: value
+      }
+    }))
+  }
+
   mountEditForm = async (id) => {
     const pets = await readAllPets();
     const pet = pets.find(el => el.id === parseInt(id));
     this.setState({
       petForm: pet
+    });
+  }
+
+  mountEventEditForm = async (id) => {
+    const events = await readAllEvents();
+    const event = events.find(el => el.id === parseInt(id));
+    this.setState({
+      eventForm: event
     });
   }
 
@@ -235,9 +330,30 @@ class App extends Component {
               mountEditForm={this.mountEditForm}
               editPet={this.editPet}
               petForm={this.state.petForm}
-              deletePet={this.deletePet} />
+              deletePet={this.deletePet}
+              events={this.state.events}
+              deleteEvent={this.deleteEvent}
+              eventForm={this.state.eventForm}
+              editEvent={this.editEvent}
+              mountEventEditForm={this.mountEventEditForm}
+              handleEventFormChange={this.handleEventFormChange}
+              showInfo={this.state.showInfo}
+              showMedical={this.state.showMedical}
+            />
           }}
         />
+
+        <Route
+          path="/pets/:id/new/event"
+          render={(props) => {
+            const { id } = props.match.params;
+            return <CreateEvent
+              petId={id}
+              handleEventFormChange={this.handleEventFormChange}
+              eventForm={this.state.eventForm}
+              newEvent={this.newEvent} />
+          }} />
+
       </div>
     );
   }

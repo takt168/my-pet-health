@@ -48,8 +48,9 @@ function CreatePet(props) {
           value={props.petForm.image_url}
           onChange={props.handleFormChange} />
 
+        <br />
 
-        <button>Submit</button>
+        <button className="submit-button">Submit</button>
       </form>
     </div >
   )
