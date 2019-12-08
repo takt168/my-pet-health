@@ -48,16 +48,24 @@ header img {
   display: inline-block;
   text-align: center;
   margin: 20px;
+  transform: skewY(18deg);
 
 }
+
+.pet-card:hover {
+  transform: skewY(0deg);
+  transition-property: transform; 
+  transition-duration: 0.5s;
+}
+
 
 .plus-sign {
   height: 20px;
 }
 
 .pet-list-img {
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 350px;
   object-fit: contain;
 }
 
@@ -154,7 +162,7 @@ header img {
   color: rgba(255, 255, 255, 0.9)
 }
 
-#medical-profile-section {
+#medical-profile-section, #edit-pet-section {
   padding-top: 100px;
   height: 86vh;
   background-repeat: no-repeat;
@@ -175,12 +183,11 @@ header img {
   margin: 5px 100px;
   
 }
-
 .auth-container {
   text-align: center;
 }
 .pet-container, .auth-container {
-  padding-top: 100px;
+  padding-top: 125px;
   height: 86vh;
   background-color: #b9b9b9;
 }

@@ -9,6 +9,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Header from './components/Header';
 import CreateEvent from './components/CreateEvent';
+import EditPet from './components/EditPet';
 import EditEvent from './components/EditEvent';
 
 import {
@@ -110,10 +111,11 @@ class App extends Component {
         image_url: ""
       }
     }))
-    this.props.history.push("/")
+    this.props.history.push(`/pets/${pet.id}`)
   }
 
-  editPet = async () => {
+  editPet = async (e) => {
+    e.preventDefault();
     const { petForm } = this.state
     await updatePet(petForm.id, petForm);
     this.setState(prevState => (
@@ -261,7 +263,13 @@ class App extends Component {
 
   handleLogin = async () => {
     const currentUser = await loginUser(this.state.authFormData);
-    this.setState({ currentUser });
+    this.setState(prevState => ({
+      currentUser,
+      petForm: {
+        ...prevState.petForm,
+        user_id: currentUser.id
+      }
+    }));
     this.resetAuthForm();
     this.props.history.push("/")
   }
@@ -332,11 +340,38 @@ class App extends Component {
             />
           )} />
         <Route
-          path="/pets/:id"
+          exact path="/pets/:id"
           render={(props) => {
             const { id } = props.match.params;
             const pet = this.state.pets.find(el => el.id === parseInt(id));
             return <PetPage
+              id={id}
+              pet={pet}
+              handleFormChange={this.handleFormChange}
+              mountEditForm={this.mountEditForm}
+              editPet={this.editPet}
+              petForm={this.state.petForm}
+              deletePet={this.deletePet}
+              events={this.state.events}
+              deleteEvent={this.deleteEvent}
+              eventForm={this.state.eventForm}
+              editEvent={this.editEvent}
+              mountEventEditForm={this.mountEventEditForm}
+              handleEventFormChange={this.handleEventFormChange}
+              showInfo={this.state.showInfo}
+              showMedical={this.state.showMedical}
+              setPetIdOnEventForm={this.setPetIdOnEventForm}
+              currentUser={this.state.currentUser}
+            />
+          }}
+        />
+
+        <Route
+          exact path="/pets/:id/edit"
+          render={(props) => {
+            const { id } = props.match.params;
+            const pet = this.state.pets.find(el => el.id === parseInt(id));
+            return <EditPet
               id={id}
               pet={pet}
               handleFormChange={this.handleFormChange}

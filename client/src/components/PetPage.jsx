@@ -122,11 +122,11 @@ class PetsPage extends Component {
 
                   <div className="add-med-card">
                     <Link to={`/pets/${pet.id}/new/event`} >
-                      <img alt="Create a new medical event"
+                      <img alt="Add medical history"
                         src="https://icon-library.net/images/white-plus-icon/white-plus-icon-3.jpg"
                         className="plus-sign" />
                     </Link>
-                    <h3>Create a new medical event</h3>
+                    <h3>Add medical history</h3>
                   </div>
                 }
                 <div className="med-event-container">
