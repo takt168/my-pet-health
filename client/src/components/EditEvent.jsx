@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 class EditEvent extends Component {
@@ -8,15 +9,26 @@ class EditEvent extends Component {
   }
 
   render() {
+    const { pet } = this.props;
+
     const linear_gradient = `linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4))`
 
-    const background_image = this.props.pet ? this.props.pet.image_url : ""
     return (
       <>
+        <div className="sidenav">
+          <Link to={`/pets/${pet.id}`}>
+            <button>Pet Profile</button>
+          </Link>
+          <Link to={`/pets/${pet.id}/events`}>
+            <button>Medical Log</button>
+          </Link>
 
-        <div id="edit-event-section" style={{
-          backgroundImage: `${linear_gradient}, url(${background_image}) `
-        }}>
+          {/* <a href="#service-provider-section">Service Providers</a> */}
+        </div>
+
+        <div id="edit-event-section"
+          style={{ backgroundImage: `${linear_gradient}, url(${pet.image_url})` }}
+        >
 
           <h3>Edit Your Event</h3>
           <form id="edit-event-form" onSubmit={this.props.handleSubmit}>

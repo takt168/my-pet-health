@@ -15,7 +15,7 @@ class EditPet extends Component {
             <button>Pet Profile</button>
           </Link>
           {this.props.currentUser &&
-            <Link to={`/pets/${petForm.id}`}>
+            <Link to={`/pets/${petForm.id}/events`}>
               <button>Medical Log</button>
             </Link>
           }

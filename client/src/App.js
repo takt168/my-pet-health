@@ -8,6 +8,7 @@ import CreatePet from './components/CreatePet'
 import Login from './components/Login'
 import Register from './components/Register'
 import Header from './components/Header';
+import EventPage from './components/EventPage';
 import CreateEvent from './components/CreateEvent';
 import EditPet from './components/EditPet';
 import EditEvent from './components/EditEvent';
@@ -172,7 +173,6 @@ class App extends Component {
       }
     }))
 
-
     await updateEvent(eventForm.id, eventForm);
     this.setState(prevState => (
       {
@@ -181,15 +181,29 @@ class App extends Component {
         }),
       }
     ))
-    this.props.history.push(`/pets/${eventForm.pet_id}`)
+
+    this.setState(prevState => ({
+      eventForm: {
+        ...prevState.eventForm,
+        name: "",
+        event_type: "",
+        event_date: "",
+        expiration_date: ""
+      }
+    }))
+
+    this.props.history.push(`/pets/${eventForm.pet_id}/events`)
   }
 
-  deleteEvent = async (id) => {
-    await destroyEvent(id);
+  deleteEvent = async (petId, eventId) => {
+    await destroyEvent(eventId);
     this.setState(prevState => ({
-      pets: prevState.events.filter(event => event.id !== id)
+      pets: prevState.events.filter(event => event.id !== eventId)
     }))
-    this.props.history.push("/")
+
+    //TODO fix this route
+    // this.props.history.push(`/pets/${petId}`)
+    this.props.history.push(`/`)
   }
 
   // ***************  FORMS  *************** 
@@ -394,16 +408,65 @@ class App extends Component {
         />
 
         <Route
-          exact path="/pets/:id/new/event"
+          exact path="/pets/:id/events"
           render={(props) => {
             const { id } = props.match.params;
+            const pet = this.state.pets.find(el => el.id == parseInt(id));
+            return <EventPage
+              id={id}
+              pet={pet}
+              handleFormChange={this.handleFormChange}
+              mountEditForm={this.mountEditForm}
+              editPet={this.editPet}
+              petForm={this.state.petForm}
+              deletePet={this.deletePet}
+              events={this.state.events}
+              deleteEvent={this.deleteEvent}
+              eventForm={this.state.eventForm}
+              editEvent={this.editEvent}
+              mountEventEditForm={this.mountEventEditForm}
+              handleEventFormChange={this.handleEventFormChange}
+              showInfo={this.state.showInfo}
+              showMedical={this.state.showMedical}
+              setPetIdOnEventForm={this.setPetIdOnEventForm}
+              currentUser={this.state.currentUser}
+            />
+          }}
+        />
+
+        <Route
+          exact path="/pets/:id/events/new"
+          render={(props) => {
+            const { id } = props.match.params;
+            const pet = this.state.pets.find(el => el.id == parseInt(id));
             return <CreateEvent
-              petId={id}
+              pet={pet}
               handleEventFormChange={this.handleEventFormChange}
               eventForm={this.state.eventForm}
               newEvent={this.newEvent} />
           }} />
 
+        <Route
+          exact path="/pets/:id/events/:event_id/edit"
+          render={(props) => {
+            const { id, event_id } = props.match.params;
+            const pet = this.state.pets.find(el => el.id == parseInt(id));
+            return <EditEvent
+              petId={id}
+              eventId={event_id}
+              mountEventEditForm={this.mountEventEditForm}
+              handleEventFormChange={this.handleEventFormChange}
+              eventForm={this.state.eventForm}
+              editEvent={this.editEvent}
+              pet={pet}
+              handleSubmit={(e) => {
+                e.preventDefault();
+                this.editEvent(event_id);
+              }}
+
+            />
+          }}
+        />
       </div>
     );
   }
