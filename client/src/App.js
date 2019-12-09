@@ -149,6 +149,7 @@ class App extends Component {
   newEvent = async (e) => {
     e.preventDefault();
     console.log("in newEvent: ", this.state.eventForm)
+    const pet_id = this.state.eventForm.pet_id
     const event = await createEvent(this.state.eventForm);
     this.setState(prevState => ({
       events: [...prevState.events, event],
@@ -161,7 +162,7 @@ class App extends Component {
       }
     }))
     console.log("in newEvent: ", this.state.events)
-    this.props.history.push("/")
+    this.props.history.push(`/pets/${pet_id}/events`)
   }
 
   editEvent = async (id) => {
@@ -203,7 +204,6 @@ class App extends Component {
 
     //TODO fix this route
     // this.props.history.push(`/pets/${petId}`)
-    this.props.history.push(`/`)
   }
 
   // ***************  FORMS  *************** 
@@ -334,6 +334,17 @@ class App extends Component {
             formData={this.state.authFormData} />)} />
         <Route
           exact path="/"
+          render={() => (
+            <PetsView
+              pets={this.state.pets}
+              petForm={this.state.petForm}
+              handleFormChange={this.handleFormChange}
+              newPet={this.newPet}
+              currentUser={this.state.currentUser} />
+          )}
+        />
+        <Route
+          exact path="/pets"
           render={() => (
             <PetsView
               pets={this.state.pets}

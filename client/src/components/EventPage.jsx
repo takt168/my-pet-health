@@ -20,8 +20,6 @@ class EventPage extends Component {
 
   render() {
 
-
-
     const { pet } = this.props;
     const linear_gradient = `linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4))`
     return (
@@ -67,18 +65,18 @@ class EventPage extends Component {
                         <p>{med_event.event_date}</p>
                         <p>{med_event.name}</p>
                         <p>{med_event.event_type}</p>
-                        <p>Exipiration/Due Date: {med_event.expiration_date}</p>
+                        <p>{med_event.expiration_date ? "Expiration/Due Date: " : ""}  {med_event.expiration_date}</p>
                         {this.props.currentUser &&
-                          <>
+                          <div id="med-card-buttons">
                             <Link to={`/pets/${pet.id}/events/${med_event.id}/edit`} >
                               <button className="submit-button">Edit</button>
                             </Link>
                             <button className="submit-button" onClick={() => {
                               this.props.deleteEvent(pet.id, med_event.id);
-                              this.props.history.push('/')
+                              // this.props.history.push(`/`)
                             }}>Delete</button>
                             <br />
-                          </>
+                          </div>
                         }
                       </div>
                     ))}
@@ -100,7 +98,6 @@ class EventPage extends Component {
         </div>
 
 
-        }} />
 
       </>)
   }

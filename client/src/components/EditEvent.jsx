@@ -35,7 +35,7 @@ class EditEvent extends Component {
 
             <div id="edit-event-form-fields">
 
-              <p>Event's name:</p>
+              <p>Event Name:</p>
               <input
                 type="text"
                 name="name"
@@ -49,14 +49,14 @@ class EditEvent extends Component {
                 value={this.props.eventForm.event_type}
                 onChange={this.props.handleEventFormChange} />
 
-              <p>Birth Date:</p>
+              <p>Event Date:</p>
               <input
                 type="date"
                 name="event_date"
                 value={this.props.eventForm.event_date}
                 onChange={this.props.handleEventFormChange} />
 
-              <p>Birth Date:</p>
+              <p>Expiration Date:</p>
               <input
                 type="date"
                 name="expiration_date"

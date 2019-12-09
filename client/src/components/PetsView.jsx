@@ -4,18 +4,6 @@ import { withRouter } from 'react-router';
 function PetsView(props) {
   return (
     <div className="pet-container">
-      {props.pets.map(pet => (
-        <div
-          key={pet.id}
-          className="pet-card"
-          onClick={(e) => {
-            props.history.push(`/pets/${pet.id}`);
-            window.scrollTo(0, 0);
-          }}>
-          <h4>{pet.name}</h4>
-          <img className="pet-list-img" alt={pet.name} src={pet.image_url} />
-        </div>
-      ))}
       {props.currentUser &&
         <div
           className="pet-add-section"
@@ -30,6 +18,20 @@ function PetsView(props) {
           <h3>Create a new pet</h3>
         </div>
       }
+      {props.pets.map(pet => (
+        <div
+          key={pet.id}
+          className="pet-card"
+          onClick={(e) => {
+            props.history.push(`/pets/${pet.id}`);
+            window.scrollTo(0, 0);
+          }}>
+          <img className="pet-list-img" alt={pet.name} src={pet.image_url} />
+          <div className="pet-card-mask">
+            <h2>{pet.name}</h2>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

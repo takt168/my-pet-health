@@ -45,33 +45,67 @@ header img {
   color: aqua;
 }
 
+/**************** PET-CARD ****************/
 .pet-card {
   display: inline-block;
   text-align: center;
   margin: 20px;
-  transform: skewY(18deg);
-
+    height: 300px;
+    width: 350px;
 }
 
-.pet-card:hover {
-  transform: skewY(0deg);
-  transition-property: transform; 
-  transition-duration: 0.5s;
+.pet-list-img { 
+  transition: all 0.4s ease-in-out 0.5s; 
+    height: 300px;
+    width: 350px;
+    object-fit: cover;
+  
+}
+.pet-card-mask{ 
+	background-color: rgba(0,0,0,0.5);
+	opacity:0;
+	transition: all 0.3s ease-in 0.4s;
+}
+.pet-card h2{
+	opacity:0;
+    background: transparent;
+    margin: 20px 40px 0px 40px;
+    transform: scale(5);
+    transition: all 0.3s ease-in-out 0.2s;
+    color: white;
 }
 
+.pet-card:hover .pet-card-mask{  
+	opacity:1; 
+  transition-delay: 0s;
+  height: 301px;
+    width: 350px;
+  transform: translateY(-325px);
+
+}																			 
+.pet-card:hover .pet-list-img { 
+	transition-delay: 0s; 
+}
+.pet-card:hover h2 { 
+	opacity: 1;
+    transform: scale(1);
+	transition-delay: 0.1s;
+}
+.pet-card:hover  { 
+	opacity:1;
+	transition-delay: 0.3s;
+}
+
+/**************** END PET-CARD ****************/
 
 .plus-sign {
   height: 20px;
 }
 
-.pet-list-img {
-  height: 300px;
-  width: 350px;
-  object-fit: contain;
-}
 
 .pet-add-section {
   display: flex;
+  margin-left: 20px;
 }
 
 .pet-add-section h3{
@@ -248,8 +282,6 @@ header img {
 #new-med-event {
   color: rgba(255, 255, 255, 0.9);
   font-size: 1.25em;
-
-
 }
 
 .add-med-card {
@@ -260,8 +292,19 @@ header img {
 .add-med-card h3 {
   margin-left: 10px;
 }
+
+.med-event-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#med-card-buttons {
+  margin-top: 5px;
+}
 .med-card {
-  background-color: rgba(251, 227, 100, 0.7);
+  background: url("https://res.cloudinary.com/du4z2ezqn/image/upload/v1575906398/Screen_Shot_2019-12-09_at_10.45.50_AM_dqurt3.png");
+  /* background-color: rgba(251, 227, 100, 0.7); */
+  background-size:contain;
   margin: 20px;
   padding: 5px;
   width: 250px;
@@ -269,6 +312,7 @@ header img {
   color: black;
   border-radius: 10px;
   box-shadow: 8px 10px;
+  opacity: 0.6;
  
 }
 

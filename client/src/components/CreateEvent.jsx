@@ -48,7 +48,7 @@ function CreateEvent(props) {
             value={props.eventForm.event_date}
             onChange={props.handleEventFormChange} />
 
-          <p>Exipiration Date:</p>
+          <p>Expiration Date:</p>
           <input
             type="date"
             name="expiration_date"
