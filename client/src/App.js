@@ -184,7 +184,7 @@ class App extends Component {
 
     this.setState(prevState => ({
       eventForm: {
-        ...prevState.eventForm,
+
         name: "",
         event_type: "",
         event_date: "",
@@ -411,7 +411,7 @@ class App extends Component {
           exact path="/pets/:id/events"
           render={(props) => {
             const { id } = props.match.params;
-            const pet = this.state.pets.find(el => el.id == parseInt(id));
+            const pet = this.state.pets.find(el => el.id === parseInt(id));
             return <EventPage
               id={id}
               pet={pet}
@@ -438,7 +438,8 @@ class App extends Component {
           exact path="/pets/:id/events/new"
           render={(props) => {
             const { id } = props.match.params;
-            const pet = this.state.pets.find(el => el.id == parseInt(id));
+            const pet = this.state.pets.find(el => el.id === parseInt(id));
+
             return <CreateEvent
               pet={pet}
               handleEventFormChange={this.handleEventFormChange}
@@ -450,7 +451,7 @@ class App extends Component {
           exact path="/pets/:id/events/:event_id/edit"
           render={(props) => {
             const { id, event_id } = props.match.params;
-            const pet = this.state.pets.find(el => el.id == parseInt(id));
+            const pet = this.state.pets.find(el => el.id === parseInt(id));
             return <EditEvent
               petId={id}
               eventId={event_id}

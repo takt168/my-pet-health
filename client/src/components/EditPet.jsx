@@ -28,9 +28,9 @@ class EditPet extends Component {
           }}
         >
           <div className="edit-pet-div">
-            <h3>Edit Your Pet's Profile</h3>
+            <h2>Edit Your Pet's Profile</h2>
           </div>
-          <form onSubmit={this.props.editPet}>
+          <form id="edit-pet-form" onSubmit={this.props.editPet}>
             <div className="edit-pet-div">
 
               <div className="in-line-edit">

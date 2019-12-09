@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import EditPet from './EditPet'
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import EditEvent from './EditEvent';
 
 class PetsPage extends Component {
   constructor(props) {

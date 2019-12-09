@@ -28,6 +28,7 @@ header {
 header a {
   color: aqua;
   font-weight: 900;
+  text-shadow: 2px 2px black;
 }
 
 header img {
@@ -180,14 +181,26 @@ header img {
   font-size: .75em;
 }
 
+#medical-profile-section h1 {
+  margin: 10px;
+}
+
+#edit-pet-form {
+  font-size: 1.1em;
+}
+
+.in-line-edit p, .in-line-edit input, .in-line-edit textarea {
+  font-size: 1.1em;
+}
+
 .pet-name-div, .edit-pet-div{
   /* background-color: rgba(128, 128, 128, 0.6); */
   display:inline-block;
   /* border-radius: 10px; */
   padding: 5px 20px;
   margin: 5px 100px;
-  
 }
+
 .auth-container {
   text-align: center;
 }
@@ -209,15 +222,27 @@ header img {
   margin-bottom: 10px;
 }
 
+#edit-event-section h2 {
+  margin: 10px;
+}
 #edit-event-form {
   text-align: center;
 }
 #edit-event-form button{
   margin-top: 10px;
 }
-.in-line-edit{
+.in-line-edit, #edit-event-form-fields{
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
+  row-gap: 10px;
+  font-size: 1.1em;
+  text-align:right;
+}
+
+#edit-event-form-fields input {
+  width: 300px;
+  font-size: .8em;
 }
 
 #new-med-event {
