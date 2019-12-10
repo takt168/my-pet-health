@@ -24,6 +24,7 @@ function PetsView(props) {
           <h3>Add a new pet</h3>
         </div>
       }
+      <br />
       {props.pets.filter(myPet => (props.currentUserId === myPet.user_id)).map(pet => (
         <div
           key={pet.id}

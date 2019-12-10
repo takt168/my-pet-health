@@ -111,8 +111,22 @@ header img {
 }
 
 .pet-add-section {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
+  background-color: #b9b9b9;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-left:44%;
+}
+
+#pet-add-unknown {
+  display: inline-flex;
+  justify-content: center;
+  background-color: #b9b9b9;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left:39%;
 }
 
 .pet-add-section h3{
@@ -248,12 +262,14 @@ header img {
 .pet-container, .auth-container {
   padding-top: 125px;
   height: 86vh;
-  background-color: #b9b9b9;
+  /* background-color: #b9b9b9; */
+  background-image: url("https://previews.123rf.com/images/natashapankina/natashapankina1608/natashapankina160800095/61234846-seamless-pattern-hand-drawn-doodle-pets-stuff-and-supply-icons-set-vector-illustration-vet-symbol-co.jpg");
 }
 
 .create-form {
   height: 86vh;
-  background-color: #b9b9b9;
+  /* background-color: #b9b9b9; */
+  background-image: url("https://previews.123rf.com/images/natashapankina/natashapankina1608/natashapankina160800095/61234846-seamless-pattern-hand-drawn-doodle-pets-stuff-and-supply-icons-set-vector-illustration-vet-symbol-co.jpg");
 }
 
 #edit-event-section {
@@ -343,6 +359,14 @@ header img {
   -webkit-transform: scale(0.9);
   -ms-transform: scale(0.9);
   transform: scale(0.9);
+}
+
+.login-div {
+  display: inline-block;
+  border: 1px solid black;
+  padding: 20px;
+  background-color: #b9b9b9;
+  border-radius: 10px;
 }
 /***************   MEDIA QUERIES   ***************/
 
