@@ -5,23 +5,28 @@ function PetsView(props) {
   return (
     <div className="pet-container">
       {!props.currentUser &&
-        <div id="pet-add-unknown">
-          <h3>Login or Register to add a pet!</h3>
+        <div className="pet-add-wrapper">
+
+          <div id="pet-add-unknown">
+            <h3>Login or Register to add a pet!</h3>
+          </div>
         </div>
+
 
       }
       {props.currentUser &&
-        <div
-          className="pet-add-section"
-          onClick={() => {
-            props.history.push('/new/pet');
-            window.scrollTo(0, 0);
-          }}>
-          <img
-            alt="Add a new pet"
-            src="https://image.flaticon.com/icons/png/512/14/14980.png"
-            className="plus-sign" />
-          <h3>Add a new pet</h3>
+        <div className="pet-add-wrapper">
+          <div className="pet-add-section"
+            onClick={() => {
+              props.history.push('/new/pet');
+              window.scrollTo(0, 0);
+            }}>
+            <img
+              alt="Add a new pet"
+              src="https://image.flaticon.com/icons/png/512/14/14980.png"
+              className="plus-sign" />
+            <h3>Add a New Pet</h3>
+          </div>
         </div>
       }
       <br />

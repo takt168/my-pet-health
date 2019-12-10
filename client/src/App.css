@@ -106,7 +106,9 @@ header img {
 }
 
 
-#pet-add-unknown {
+
+  .pet-add-wrapper {
+  margin: 20px auto 0;
   text-align: center;
 }
 
@@ -116,8 +118,6 @@ header img {
   background-color: #b9b9b9;
   padding: 10px;
   border-radius: 10px;
-  margin-top: 20px;
-  margin-left:44%;
 }
 
 #pet-add-unknown {
@@ -126,7 +126,6 @@ header img {
   background-color: #b9b9b9;
   padding: 10px;
   border-radius: 10px;
-  margin-left:39%;
 }
 
 .pet-add-section h3{
@@ -180,7 +179,7 @@ header img {
 .sidenav button {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 1.56em;
   color: #818181;
   display: block;
   border: 0;
@@ -261,16 +260,20 @@ header img {
   text-align: center;
 }
 .pet-container, .auth-container {
-  padding-top: 125px;
-  height: 86vh;
+  padding-top: 100px;
+  min-height: 86vh;
   /* background-color: #b9b9b9; */
   background-image: url("https://previews.123rf.com/images/natashapankina/natashapankina1608/natashapankina160800095/61234846-seamless-pattern-hand-drawn-doodle-pets-stuff-and-supply-icons-set-vector-illustration-vet-symbol-co.jpg");
+  background-size: 500px;
+  background-repeat: repeat;
 }
 
 .create-form {
-  height: 86vh;
+  min-height: 86vh;
   /* background-color: #b9b9b9; */
   background-image: url("https://previews.123rf.com/images/natashapankina/natashapankina1608/natashapankina160800095/61234846-seamless-pattern-hand-drawn-doodle-pets-stuff-and-supply-icons-set-vector-illustration-vet-symbol-co.jpg");
+  background-size: 500px;
+  background-repeat: repeat;
 }
 
 #edit-event-section {
@@ -362,17 +365,43 @@ header img {
   transform: scale(0.9);
 }
 
-.login-div {
+.login-div, .create-pet-div {
   display: inline-block;
   border: 1px solid black;
   padding: 20px;
   background-color: #b9b9b9;
   border-radius: 10px;
+  margin-top: 20px;
 }
 /***************   MEDIA QUERIES   ***************/
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+@media screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px) {
+  body {
+    font-size: 12px;
+  }
+
+  header h1 a {
+    font-size: 1em;
+  }
+
+  .sidenav {
+    padding-top: 15px;
+    width: 120px;
+    }
+  
+
+  .pet-profile-page, #edit-event-section {
+    margin-left: 120px;
+  }
+
+  .pet-name-div {
+    margin: 5px auto;
+  }
+
+  #edit-event-form-fields input {
+    width: 125px;
+  }
 }
