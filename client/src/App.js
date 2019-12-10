@@ -294,7 +294,7 @@ class App extends Component {
     this.setState({ currentUser });
     this.resetAuthForm();
     this.props.history.push("/")
-    window.location.reload();
+    // window.location.reload();
   }
 
   handleLogout = () => {
@@ -487,8 +487,8 @@ class App extends Component {
         />
         <footer>
           <h4>&copy;Tak Tsukamoto</h4>
-          <a href="https://github.com/takt168/my-pet-health" target="_blank">
-            <img src="https://res.cloudinary.com/du4z2ezqn/image/upload/v1576005340/iconmonstr-github-1-240_fgwbgk.png" />
+          <a href="https://github.com/takt168/my-pet-health" target="_blank" rel="noopener noreferrer">
+            <img alt="github" src="https://res.cloudinary.com/du4z2ezqn/image/upload/v1576005340/iconmonstr-github-1-240_fgwbgk.png" />
           </a>
         </footer>
       </div>

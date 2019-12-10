@@ -369,6 +369,7 @@ footer img {
   border: 1px solid black;
   transition-timing-function: ease-in-out;
   box-shadow: 1px 1px darkgray;
+  background-color: white;
 }
 
 .submit-button:hover {
