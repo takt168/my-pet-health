@@ -59,20 +59,6 @@ class PetPage extends Component {
                   )} />
                   :
                   <>
-                    {this.props.currentUser &&
-                      <div className="pet-name-div">
-                        <button className="submit-button" onClick={() => {
-                          this.setState({
-                            isEdit: true
-                          })
-                          this.props.history.push(`/pets/${pet.id}/edit`)
-                        }}>Edit</button>
-                        <button className="submit-button" onClick={() => {
-                          this.props.deletePet(pet.id);
-                          this.props.history.push('/')
-                        }}>Delete</button>
-                      </div>
-                    }
                     <br />
                     <div className="pet-name-div">
                       <h2>{pet.name}</h2>
@@ -93,6 +79,21 @@ class PetPage extends Component {
                     <div className="pet-name-div">
                       <h3>Birth Date: {pet.birth_date}</h3>
                     </div>
+                    {this.props.currentUser &&
+                      <div className="pet-name-div">
+                        <button className="submit-button" onClick={() => {
+                          this.setState({
+                            isEdit: true
+                          })
+                          this.props.history.push(`/pets/${pet.id}/edit`)
+                        }}>Edit</button>
+                        <button className="submit-button" onClick={() => {
+                          this.props.deletePet(pet.id);
+                          this.props.history.push('/')
+                        }}>Delete</button>
+                      </div>
+                    }
+
                   </>
                 }
               </div>

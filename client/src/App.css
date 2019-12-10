@@ -2,7 +2,10 @@
   margin: 0;
   padding: 0;
   font-family: 'Libre Baskerville', serif;
+}
 
+.App {
+  background-color: #777777;
 }
 
 a {
@@ -43,6 +46,18 @@ header img {
 
 #header-user-info p {
   color: aqua;
+}
+
+footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #777777;
+}
+
+footer img {
+  width: 30px;
+  margin: 10px;
 }
 
 /**************** PET-CARD ****************/
@@ -212,7 +227,7 @@ header img {
 #edit-event-section,
 #create-event-form {
   padding-top: 100px;
-  height: 87vh;
+  height: 89vh;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -407,4 +422,8 @@ and (max-device-width : 812px) {
   #edit-event-form-fields input {
     width: 125px;
   }
+
+  textarea {
+    width: 300px;
+}
 }
