@@ -81,7 +81,6 @@ class EventPage extends Component {
                     ))}
                 </div>
               </div>
-              }
 
               {/* <div id="service-provider-section"
                 style={{
