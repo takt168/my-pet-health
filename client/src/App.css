@@ -248,12 +248,12 @@ header img {
   font-size: 1.1em;
 }
 
-.pet-name-div, .edit-pet-div{
+.edit-pet-div{
   /* background-color: rgba(128, 128, 128, 0.6); */
-  display:inline-block;
+  display:block;
   /* border-radius: 10px; */
   padding: 5px 20px;
-  margin: 5px 100px;
+  margin: 5px auto;
 }
 
 .auth-container {
@@ -398,6 +398,9 @@ and (max-device-width : 812px) {
   }
 
   .pet-name-div {
+    display:inline-block;
+    /* border-radius: 10px; */
+    padding: 5px 20px;
     margin: 5px auto;
   }
 
