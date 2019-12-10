@@ -59,20 +59,21 @@ header img {
     height: 300px;
     width: 350px;
     object-fit: cover;
-  
+    border-radius: 10%;
 }
+
 .pet-card-mask{ 
 	background-color: rgba(0,0,0,0.5);
 	opacity:0;
-	transition: all 0.3s ease-in 0.4s;
+	transition: all 0.1s ease-in 0.2s;
 }
 .pet-card h2{
 	opacity:0;
     background: transparent;
-    margin: 20px 40px 0px 40px;
     transform: scale(5);
     transition: all 0.3s ease-in-out 0.2s;
     color: white;
+    display: inline-block;
 }
 
 .pet-card:hover .pet-card-mask{  
@@ -80,16 +81,18 @@ header img {
   transition-delay: 0s;
   height: 301px;
     width: 350px;
-  transform: translateY(-325px);
+  transform: translateY(-305px);
+  border-radius: 10%;
+}										
 
-}																			 
 .pet-card:hover .pet-list-img { 
 	transition-delay: 0s; 
 }
 .pet-card:hover h2 { 
 	opacity: 1;
     transform: scale(1);
-	transition-delay: 0.1s;
+	transition-delay: 0.2s;
+  transform: translateY(150px);
 }
 .pet-card:hover  { 
 	opacity:1;
@@ -103,9 +106,13 @@ header img {
 }
 
 
+#pet-add-unknown {
+  text-align: center;
+}
+
 .pet-add-section {
   display: flex;
-  margin-left: 20px;
+  justify-content: center;
 }
 
 .pet-add-section h3{

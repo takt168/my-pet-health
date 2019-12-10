@@ -14,9 +14,7 @@ class EventPage extends Component {
   componentDidMount() {
     this.props.mountEditForm(this.props.id);
     this.props.setPetIdOnEventForm(this.props.id);
-
   }
-
 
   render() {
 
@@ -25,10 +23,12 @@ class EventPage extends Component {
     return (
       <>
         <div className="sidenav">
-          <Link to={`/pets/${pet.id}`}>
-            <button>Pet Profile</button>
-          </Link>
-          {this.props.currentUser &&
+          {pet &&
+            <Link to={`/pets/${pet.id}`}>
+              <button>Pet Profile</button>
+            </Link>
+          }
+          {this.props.currentUser && pet &&
             <Link to={`/pets/${pet.id}/events`}>
               <button>Medical Log</button>
             </Link>
@@ -73,7 +73,6 @@ class EventPage extends Component {
                             </Link>
                             <button className="submit-button" onClick={() => {
                               this.props.deleteEvent(pet.id, med_event.id);
-                              // this.props.history.push(`/`)
                             }}>Delete</button>
                             <br />
                           </div>

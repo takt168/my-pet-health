@@ -3,7 +3,7 @@ import EditPet from './EditPet'
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
-class PetsPage extends Component {
+class PetPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,10 +24,12 @@ class PetsPage extends Component {
     return (
       <>
         <div className="sidenav">
-          <Link to={`/pets/${pet.id}`}>
-            <button>Pet Profile</button>
-          </Link>
-          {this.props.currentUser &&
+          {pet &&
+            <Link to={`/pets/${pet.id}`}>
+              <button>Pet Profile</button>
+            </Link>
+          }
+          {this.props.currentUser && pet &&
             <Link to={`/pets/${pet.id}/events`}>
               <button>Medical Log</button>
             </Link>
@@ -106,4 +108,4 @@ class PetsPage extends Component {
   }
 }
 
-export default withRouter(PetsPage);
+export default withRouter(PetPage);

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 function CreatePet(props) {
   return (
     <div className="create-form" >
-      <h2>Create a new pet</h2>
+      <h2>Add a new pet</h2>
       <form onSubmit={props.newPet}>
         <p>Pet's name:</p>
         <input

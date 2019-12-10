@@ -4,6 +4,12 @@ import { withRouter } from 'react-router';
 function PetsView(props) {
   return (
     <div className="pet-container">
+      {!props.currentUser &&
+        <div id="pet-add-unknown">
+          <h3>Login or Register to add a pet!</h3>
+        </div>
+
+      }
       {props.currentUser &&
         <div
           className="pet-add-section"
@@ -12,13 +18,13 @@ function PetsView(props) {
             window.scrollTo(0, 0);
           }}>
           <img
-            alt="Create a new pet"
+            alt="Add a new pet"
             src="https://image.flaticon.com/icons/png/512/14/14980.png"
             className="plus-sign" />
-          <h3>Create a new pet</h3>
+          <h3>Add a new pet</h3>
         </div>
       }
-      {props.pets.map(pet => (
+      {props.pets.filter(myPet => (props.currentUserId === myPet.user_id)).map(pet => (
         <div
           key={pet.id}
           className="pet-card"

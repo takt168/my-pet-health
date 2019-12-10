@@ -52,6 +52,7 @@ class App extends Component {
         pet_id: ""
       },
       currentUser: null,
+      currentUserId: "",
       authFormData: {
         username: "",
         email: "",
@@ -66,10 +67,11 @@ class App extends Component {
     this.getPets();
     this.getEvents();
     const currentUser = await verifyUser();
-    console.log(`currentUser: ${currentUser.id}`);
+    const currentUserId = currentUser.id;
     if (currentUser) {
       this.setState(prevState => ({
         currentUser,
+        currentUserId,
         petForm: {
           ...prevState.petForm,
           user_id: currentUser.id
@@ -94,12 +96,10 @@ class App extends Component {
         pet_id
       }
     }))
-    console.log(this.state.eventForm);
   }
 
   newPet = async (e) => {
     e.preventDefault();
-    console.log("in newPet: ", this.state.petForm)
     const pet = await createPet(this.state.petForm);
     this.setState(prevState => ({
       pets: [...prevState.pets, pet],
@@ -148,7 +148,6 @@ class App extends Component {
 
   newEvent = async (e) => {
     e.preventDefault();
-    console.log("in newEvent: ", this.state.eventForm)
     const pet_id = this.state.eventForm.pet_id
     const event = await createEvent(this.state.eventForm);
     this.setState(prevState => ({
@@ -161,7 +160,6 @@ class App extends Component {
         pet_id: ""
       }
     }))
-    console.log("in newEvent: ", this.state.events)
     this.props.history.push(`/pets/${pet_id}/events`)
   }
 
@@ -203,7 +201,8 @@ class App extends Component {
     }))
 
     //TODO fix this route
-    // this.props.history.push(`/pets/${petId}`)
+    this.props.history.push(`/pets/${petId}/events`)
+    window.location.reload();
   }
 
   // ***************  FORMS  *************** 
@@ -286,6 +285,7 @@ class App extends Component {
     }));
     this.resetAuthForm();
     this.props.history.push("/")
+    window.location.reload();
   }
 
   handleRegister = async (e) => {
@@ -294,6 +294,7 @@ class App extends Component {
     this.setState({ currentUser });
     this.resetAuthForm();
     this.props.history.push("/")
+    window.location.reload();
   }
 
   handleLogout = () => {
@@ -301,6 +302,8 @@ class App extends Component {
     this.setState({
       currentUser: null
     })
+    this.props.history.push("/")
+    window.location.reload();
   }
 
   authHandleChange = (e) => {
@@ -334,13 +337,16 @@ class App extends Component {
             formData={this.state.authFormData} />)} />
         <Route
           exact path="/"
+
           render={() => (
             <PetsView
               pets={this.state.pets}
               petForm={this.state.petForm}
               handleFormChange={this.handleFormChange}
               newPet={this.newPet}
-              currentUser={this.state.currentUser} />
+              currentUser={this.state.currentUser}
+              currentUserId={this.state.currentUserId}
+            />
           )}
         />
         <Route
